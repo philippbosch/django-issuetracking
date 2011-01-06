@@ -1,0 +1,6 @@
+*.pyc
+MANIFEST.in
+build
+dist
+django_issuetracking.egg-info/
+docs/build
