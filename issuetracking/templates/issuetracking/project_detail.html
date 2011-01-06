@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+    <h1>{{ project.title }}</h1>
+    {% if project.subtitle %}<h2>{{ project.subtitle }}</h2>{% endif %}
+    {% if project.description %}{{ project.description|linebreaks }}{% endif %}
+    
+    {% if project.issues.count %}
+        <table class="issues">
+            <thead>
+                <th>{% trans "title"|capfirst %}</th>
+                <th>{% trans "status"|capfirst %}</th>
+                <th>{% trans "reported by"|capfirst %}</th>
+                <th>{% trans "assigned to"|capfirst %}</th>
+                <th>{% trans "tags"|capfirst %}</th>
+            </thead>
+            <tbody>
+                {% for issue in project.issues.all %}
+                    <tr>
+                        <th><a href="{% url 'issuetracking:issue_detail' project.slug issue.id %}">{{ issue.title }}</a></th>
+                        <td>{{ issue.get_status_display }}</td>
+                        <td>{{ issue.reported_by }}</td>
+                        <td>{{ issue.assigned_to }}</td>
+                        <td>{{ issue.tags.all|join:", " }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </ul>
+    {% endif %}
+{% endblock %}

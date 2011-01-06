@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+    <h1>{% trans "Projects" %}</h1>
+    
+    {% if project_list|length %}
+        <ul>
+            {% for project in project_list %}
+                <li><a href="{% url 'issuetracking:project_detail' project.slug %}">{{ project.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

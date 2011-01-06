@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+    <h1>{{ issue.project.title }}</h1>
+    {% if issue.project.subtitle %}<h2>{{ issue.project.subtitle }}</h2>{% endif %}
+    
+    <dl>
+        <dt>{% trans "status"|capfirst %}</dt>
+        <dd>{{ issue.get_status_display }}</dd>
+        <dt>{% trans "reported by"|capfirst %}</dt>
+        <dd>{{ issue.reported_by }}</dd>
+        <dt>{% trans "assigned to"|capfirst %}</dt>
+        <dd>{{ issue.assigned_to }}</dd>
+    </dl>
+    
+    <h3>{{ issue.title }}</h3>
+    {% if issue.description %}{{ issue.description|linebreaks }}{% endif %}
+    
+{% endblock %}
