@@ -1,0 +1,6 @@
+include LICENSE
+include README
+include MANIFEST.in
+recursive-include docs *.rst *.py
+recursive-include issuetracking/templates/issuetracking *.html *.txt
+recursive-include issuetracking/locale *
